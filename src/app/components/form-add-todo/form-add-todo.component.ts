@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
 @Component({
@@ -10,12 +10,13 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './form-add-todo.component.scss'
 })
 export class FormAddTodoComponent {
-  todoText: string | undefined
+  todoText: string = ''
+  @Output('doAddTodo') doAddTodo = new EventEmitter<string>();
 
   doSubmitTodo() {
     if (this.todoText!.length > 0) {
-      console.log('todo text =>', this.todoText)
+      this.doAddTodo.emit(this.todoText)
+      this.todoText = ''
     }
-    this.todoText = ''
   }
 }

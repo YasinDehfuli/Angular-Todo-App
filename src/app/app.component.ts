@@ -1,13 +1,29 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {AppHeaderComponent} from './components/app-header/app-header.component';
+import { FormAddTodoComponent } from './components/form-add-todo/form-add-todo.component';
+
+interface Todo {
+  key: number;
+  done: boolean;
+  text: string;
+}
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AppHeaderComponent],
+  standalone: true,
+  imports: [RouterOutlet, FormAddTodoComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Angular-Todo-App';
+  title = 'Angular Todo App';
+  todos: Todo[] = [];
+
+  doAddTodoToArray(todo: string): void {
+    this.todos = [
+      ...this.todos,
+      { key: Date.now(), done: false, text: todo }
+    ];
+    console.log(this.todos);
+  }
 }
