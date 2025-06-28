@@ -1,0 +1,10 @@
+<form>
+  <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+    <div class="form-floating">
+      <input [(ngModel)]="todoText" type="text" name="input-todo" class="form-control" id="floatingInput"
+             placeholder="New Todo">
+      <label for="floatingInput">I want to do...</label>
+    </div>
+    <button (click)="doSubmitTodo()" type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Add</button>
+  </div>
+</form>
