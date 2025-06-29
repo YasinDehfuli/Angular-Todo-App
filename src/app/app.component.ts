@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { FormAddTodoComponent } from './components/form-add-todo/form-add-todo.component';
+import {Component} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
+import {FormAddTodoComponent} from './components/form-add-todo/form-add-todo.component';
 import {TodosComponent} from './components/todos/todos.component';
 
 interface Todo {
@@ -23,8 +23,11 @@ export class AppComponent {
   doAddTodoToArray(todo: string): void {
     this.todos = [
       ...this.todos,
-      { key: Date.now(), done: false, text: todo }
+      {key: Date.now(), done: false, text: todo}
     ];
-    console.log(this.todos);
+  }
+
+  doDeleteTodo(key: number) {
+    this.todos = this.todos.filter(item => item.key !== key)
   }
 }

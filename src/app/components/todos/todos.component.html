@@ -17,5 +17,9 @@
 </div>
 
 <section class="d-flex flex-column align-items-center">
-  <app-todo *ngFor="let todo of todos" [todoItem]="todo" class="col-6 mb-2 mt-2"></app-todo>
+  <app-todo
+    *ngFor="let todo of todos" [todoItem]="todo"
+    (delete)="doDeleteTodo(todo.key)"
+    class="col-6 mb-2 mt-2">
+  </app-todo>
 </section>

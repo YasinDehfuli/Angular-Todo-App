@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 
@@ -13,6 +13,8 @@ import {FormsModule} from '@angular/forms';
 })
 export class TodoComponent {
   @Input('todoItem') todo!: { key: number; done: boolean; text: string };
+  @Output() delete = new EventEmitter<number>();
+
   hasDoEditSelected: boolean = false;
   initialValue: string = ''
 
@@ -27,5 +29,9 @@ export class TodoComponent {
   doSubmitEditTodo() {
     this.todo.text = this.initialValue
     this.doCancelChangeTodo()
+  }
+
+  doDeleteTodo(key: number) {
+    this.delete.emit(key)
   }
 }
