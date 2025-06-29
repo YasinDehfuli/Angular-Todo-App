@@ -8,8 +8,8 @@
         </span>
         <ng-template #edit_template>
           <div class="form-floating">
-             <input type="text" class="form-control" id="edit-todo" placeholder="Password">
-             <label for="edit-todo"> {{ todo.text }} </label>
+            <input type="text" class="form-control" id="edit-todo" [(ngModel)]="initialValue">
+            <label for="edit-todo"> {{ todo.text }} </label>
           </div>
         </ng-template>
       </label>
@@ -21,7 +21,7 @@
     <ng-template #submit_button_template>
       <div class="d-flex gap-2">
         <button type="button" class="btn btn-sm btn-danger" (click)="doCancelChangeTodo()">Cancel</button>
-        <button type="button" class="btn btn-sm btn-secondary" >Submit</button>
+        <button type="button" class="btn btn-sm btn-secondary" (click)="doSubmitEditTodo()">Submit</button>
       </div>
     </ng-template>
   </li>

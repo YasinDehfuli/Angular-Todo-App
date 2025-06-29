@@ -1,5 +1,21 @@
-<section class="d-flex flex-column align-items-center">
-  <app-todo *ngFor="let todo of todos" [todoItem]="todo"  class="col-6 mb-2 mt-2">
+<div class="d-flex justify-content-center mt-2">
+  <ul class="nav nav-tabs">
+    <li class="nav-item position-relative">
+      <a class="nav-link active" aria-current="page" href="#">
+        Active
+        <span class="badge rounded-pill text-bg-danger">1</span>
+      </a>
 
-  </app-todo>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        Done
+        <span class="badge rounded-pill text-bg-info">2</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<section class="d-flex flex-column align-items-center">
+  <app-todo *ngFor="let todo of todos" [todoItem]="todo" class="col-6 mb-2 mt-2"></app-todo>
 </section>
