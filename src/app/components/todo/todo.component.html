@@ -1,1 +1,28 @@
-<p>todo works!</p>
+<ul class="list-group">
+  <li class="todo-size list-group-item d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center">
+      <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
+      <label class="form-check-label m-lg-2 mb-0" for="firstCheckbox">
+        <span *ngIf="!hasDoEditSelected ; else edit_template" class="edit-todo">
+          {{ todo.text }}
+        </span>
+        <ng-template #edit_template>
+          <div class="form-floating">
+             <input type="text" class="form-control" id="edit-todo" placeholder="Password">
+             <label for="edit-todo"> {{ todo.text }} </label>
+          </div>
+        </ng-template>
+      </label>
+    </div>
+    <div *ngIf="!hasDoEditSelected ; else submit_button_template" class="d-flex gap-2">
+      <button type="button" class="btn btn-sm btn-danger">Delete</button>
+      <button type="button" class="btn btn-sm btn-primary" (click)="doEditTodo()">Edit</button>
+    </div>
+    <ng-template #submit_button_template>
+      <div class="d-flex gap-2">
+        <button type="button" class="btn btn-sm btn-danger" (click)="doCancelChangeTodo()">Cancel</button>
+        <button type="button" class="btn btn-sm btn-secondary" >Submit</button>
+      </div>
+    </ng-template>
+  </li>
+</ul>

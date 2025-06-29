@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormAddTodoComponent } from './components/form-add-todo/form-add-todo.component';
+import {TodosComponent} from './components/todos/todos.component';
 
 interface Todo {
   key: number;
@@ -11,7 +12,7 @@ interface Todo {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormAddTodoComponent],
+  imports: [RouterOutlet, FormAddTodoComponent, TodosComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
