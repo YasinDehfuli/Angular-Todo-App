@@ -1,16 +1,20 @@
 <div class="d-flex justify-content-center mt-2">
   <ul class="nav nav-tabs">
     <li class="nav-item position-relative">
-      <a class="nav-link active" aria-current="page" href="#">
+      <a class="nav-link" [ngClass]="{'active': !doneStatus}"  (click)="doneStatus = false" aria-current="page">
         Undone
-        <span class="badge rounded-pill text-bg-danger">1</span>
+        <span class="badge rounded-pill text-bg-danger">
+          {{doneTodos.length}}
+        </span>
       </a>
 
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">
+      <a class="nav-link" [ngClass]="{'active': doneStatus}" (click)="doneStatus = true">
         Done
-        <span class="badge rounded-pill text-bg-info">2</span>
+        <span class="badge rounded-pill text-bg-info">
+          {{unDoneTodos.length}}
+        </span>
       </a>
     </li>
   </ul>
@@ -18,7 +22,7 @@
 
 <section class="d-flex flex-column align-items-center">
   <app-todo
-    *ngFor="let todo of todos" [todoItem]="todo"
+    *ngFor="let todo of filterTodos" [todoItem]="todo"
     (delete)="doDeleteTodo(todo.key)"
     (status)="doChangeStatus(todo.key)"
     class="col-6 mb-2 mt-2">
