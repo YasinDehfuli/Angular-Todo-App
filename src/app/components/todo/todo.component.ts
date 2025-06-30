@@ -29,8 +29,10 @@ export class TodoComponent {
   }
 
   doSubmitEditTodo() {
-    this.todo.text = this.initialValue
-    this.doCancelChangeTodo()
+    if (this.initialValue.length > 0) {
+      this.todo.text = this.initialValue
+      this.doCancelChangeTodo()
+    }
   }
 
   doDeleteTodo(key: number) {
