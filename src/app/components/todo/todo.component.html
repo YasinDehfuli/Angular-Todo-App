@@ -14,11 +14,11 @@
       </label>
     </div>
     <div *ngIf="!hasDoEditSelected ; else submit_button_template" class="d-flex gap-2">
+      <button type="button" class="btn btn-sm btn-danger" (click)="doDeleteTodo(todo.key)">Delete</button>
+      <button type="button" class="btn btn-sm btn-primary" (click)="doEditTodo()">Edit</button>
       <button type="button" class="btn btn-sm" [ngClass]="{'btn-success': todo.done , 'btn-warning': !todo.done}" (click)="doToggleStatusTodo(todo.key)">
         {{ todo.done ? 'Done' : 'Undone' }}
       </button>
-      <button type="button" class="btn btn-sm btn-danger" (click)="doDeleteTodo(todo.key)">Delete</button>
-      <button type="button" class="btn btn-sm btn-primary" (click)="doEditTodo()">Edit</button>
     </div>
     <ng-template #submit_button_template>
       <div class="d-flex gap-2">
