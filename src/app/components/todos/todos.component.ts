@@ -14,8 +14,13 @@ import {NgForOf} from '@angular/common';
 export class TodosComponent {
   @Input() todos: Array<{ key: number; done: boolean; text: string; }> = []
   @Output() delete = new EventEmitter<number>();
+  @Output() status = new EventEmitter<number>();
 
   doDeleteTodo(key: number) {
     this.delete.emit(key)
+  }
+
+  doChangeStatus(status: number) {
+    this.status.emit(status)
   }
 }

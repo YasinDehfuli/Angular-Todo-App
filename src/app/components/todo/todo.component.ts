@@ -1,12 +1,13 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {NgIf} from '@angular/common';
+import {NgClass, NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-todo',
   imports: [
     NgIf,
-    FormsModule
+    FormsModule,
+    NgClass
   ],
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.scss'
@@ -14,6 +15,7 @@ import {FormsModule} from '@angular/forms';
 export class TodoComponent {
   @Input('todoItem') todo!: { key: number; done: boolean; text: string };
   @Output() delete = new EventEmitter<number>();
+  @Output() status = new EventEmitter<number>();
 
   hasDoEditSelected: boolean = false;
   initialValue: string = ''
@@ -33,5 +35,9 @@ export class TodoComponent {
 
   doDeleteTodo(key: number) {
     this.delete.emit(key)
+  }
+
+  doToggleStatusTodo(status: number) {
+    this.status.emit(status)
   }
 }

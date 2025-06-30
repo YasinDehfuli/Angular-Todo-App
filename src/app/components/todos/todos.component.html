@@ -2,7 +2,7 @@
   <ul class="nav nav-tabs">
     <li class="nav-item position-relative">
       <a class="nav-link active" aria-current="page" href="#">
-        Active
+        Undone
         <span class="badge rounded-pill text-bg-danger">1</span>
       </a>
 
@@ -20,6 +20,7 @@
   <app-todo
     *ngFor="let todo of todos" [todoItem]="todo"
     (delete)="doDeleteTodo(todo.key)"
+    (status)="doChangeStatus(todo.key)"
     class="col-6 mb-2 mt-2">
   </app-todo>
 </section>
