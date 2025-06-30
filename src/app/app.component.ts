@@ -1,9 +1,11 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {FormAddTodoComponent} from './components/form-add-todo/form-add-todo.component';
 import {TodosComponent} from './components/todos/todos.component';
+import {TodoService} from './services/todo.service';
+import {Subscription} from 'rxjs';
 
-interface Todo {
+export interface Todo {
   key: number;
   done: boolean;
   text: string;
@@ -14,11 +16,18 @@ interface Todo {
   standalone: true,
   imports: [RouterOutlet, FormAddTodoComponent, TodosComponent],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Angular Todo App';
   todos: Todo[] = [];
+
+  constructor(private todoService: TodoService) {}
+
+  ngOnInit() {
+    this.todos = this.todoService.doGetTodos()
+  }
+
 
   doAddTodoToArray(todo: string): void {
     this.todos = [
