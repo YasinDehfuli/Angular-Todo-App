@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng build --configuration production --base-href /Angular-Todo-App/ && npx angular-cli-ghpages --dir=dist/angular-todo-app"
   },
   "private": true,
   "dependencies": {
