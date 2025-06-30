@@ -22,6 +22,6 @@ A clean and responsive **Todo List Application** built with [Angular](https://an
 
 ## 📸 Preview
 
-[Todo App Preview](public/Preview.mov)
+https://github.com/user-attachments/assets/36058939-4417-4e0f-8ef4-41ae06feea90
 
 ---
