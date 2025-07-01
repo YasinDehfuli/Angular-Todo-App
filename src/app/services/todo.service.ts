@@ -1,29 +1,31 @@
 import {Injectable} from '@angular/core';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class TodoService {
-    public todos = [
-        {
-            key: 1,
-            done: false,
-            text: 'Todo service worked'
-        }
-    ]
-
-    constructor() {
+  public todos = [
+    {
+      key: 1,
+      done: false,
+      text: 'Todo service worked'
     }
+  ]
 
-    doGetTodos() {
-        return this.todos
-    }
+  constructor() {
+  }
 
-    doAddTodo(todo: string) {
-        this.todos.push({key: Date.now(), done: false, text: todo})
-    }
+  doGetTodos() {
+    return this.todos
+  }
 
-    doRemoveTodo(key: number) {
-        this.todos = this.todos.filter(item => item.key !== key);
-    }
+  doAddTodo(todo: string) {
+    this.todos.push({key: Date.now(), done: false, text: todo})
+  }
+
+  doRemoveTodo(key: number) {
+    let indexTodo = this.todos.findIndex(todo => todo.key === key)
+    this.todos.splice(indexTodo, 1)
+    // this.todos = this.todos.filter(item => item.key !== key);
+  }
 }
