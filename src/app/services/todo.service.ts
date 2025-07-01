@@ -1,31 +1,33 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
+import {Todo} from '../app.component';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class TodoService {
-  public todos = [
-    {
-      key: 1,
-      done: false,
-      text: 'Todo service worked'
+  todosChanged = new EventEmitter<Todo[]>()
+
+    public todos = [
+        {
+            key: 1,
+            done: false,
+            text: 'Todo service worked'
+        }
+    ]
+
+    constructor() {
     }
-  ]
 
-  constructor() {
-  }
+    doGetTodos() {
+        return this.todos
+    }
 
-  doGetTodos() {
-    return this.todos
-  }
+    doAddTodo(todo: string) {
+        this.todos.push({key: Date.now(), done: false, text: todo})
+    }
 
-  doAddTodo(todo: string) {
-    this.todos.push({key: Date.now(), done: false, text: todo})
-  }
-
-  doRemoveTodo(key: number) {
-    let indexTodo = this.todos.findIndex(todo => todo.key === key)
-    this.todos.splice(indexTodo, 1)
-    // this.todos = this.todos.filter(item => item.key !== key);
-  }
+    doRemoveTodo(key: number) {
+        this.todos = this.todos.filter(item => item.key !== key);
+        this.todosChanged.emit(this.todos)
+    }
 }

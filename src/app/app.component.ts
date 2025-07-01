@@ -21,10 +21,12 @@ export class AppComponent implements OnInit {
   title = 'Angular Todo App';
   todos: Todo[] = [];
 
-  constructor(public todoService: TodoService) {}
+  constructor(public todoService: TodoService) {
+  }
 
   ngOnInit() {
     this.todos = this.todoService.doGetTodos()
+    this.todoService.todosChanged.subscribe(todos => this.todos = todos)
   }
 
   doChangeStatus(key: number) {
