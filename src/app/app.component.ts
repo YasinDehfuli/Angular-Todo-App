@@ -3,7 +3,6 @@ import {RouterOutlet} from '@angular/router';
 import {FormAddTodoComponent} from './components/form-add-todo/form-add-todo.component';
 import {TodosComponent} from './components/todos/todos.component';
 import {TodoService} from './services/todo.service';
-import {Subscription} from 'rxjs';
 
 export interface Todo {
   key: number;
@@ -22,18 +21,10 @@ export class AppComponent implements OnInit {
   title = 'Angular Todo App';
   todos: Todo[] = [];
 
-  constructor(private todoService: TodoService) {}
+  constructor(public todoService: TodoService) {}
 
   ngOnInit() {
     this.todos = this.todoService.doGetTodos()
-  }
-
-
-  doAddTodoToArray(todo: string): void {
-    this.todos = [
-      ...this.todos,
-      {key: Date.now(), done: false, text: todo}
-    ];
   }
 
   doDeleteTodo(key: number) {

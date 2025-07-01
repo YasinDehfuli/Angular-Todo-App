@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class TodoService {
     public todos = [
@@ -17,5 +17,9 @@ export class TodoService {
 
     doGetTodos() {
         return this.todos
+    }
+
+    doAddTodo(todo: string) {
+        this.todos.push({key: Date.now(), done: false, text: todo})
     }
 }
