@@ -10,7 +10,7 @@
   </div>
 </header>
 
-<app-todos [todos]="todos" (delete)="doDeleteTodo($event)" (status)="doChangeStatus($event)"></app-todos>
+<app-todos [todos]="todos" (status)="doChangeStatus($event)"></app-todos>
 
 
 <router-outlet/>
