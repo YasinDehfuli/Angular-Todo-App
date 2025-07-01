@@ -23,7 +23,7 @@ export class TodoService {
         this.todos.push({key: Date.now(), done: false, text: todo})
     }
 
-    doRemoveTodo (key: number) {
-        this.todos.pop()
+    doRemoveTodo(key: number) {
+        this.todos = this.todos.filter(item => item.key !== key);
     }
 }

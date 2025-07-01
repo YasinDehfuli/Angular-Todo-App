@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {FormAddTodoComponent} from './components/form-add-todo/form-add-todo.component';
 import {TodosComponent} from './components/todos/todos.component';
@@ -25,10 +25,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.todos = this.todoService.doGetTodos()
-  }
-
-  doDeleteTodo(key: number) {
-    this.todos = this.todos.filter(item => item.key !== key)
   }
 
   doChangeStatus(key: number) {
