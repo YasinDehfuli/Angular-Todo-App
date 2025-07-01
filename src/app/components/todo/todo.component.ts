@@ -15,7 +15,6 @@ import {TodoService} from '../../services/todo.service';
 })
 export class TodoComponent {
   @Input('todoItem') todo!: { key: number; done: boolean; text: string };
-  @Output() status = new EventEmitter<number>();
 
   hasDoEditSelected: boolean = false;
   initialValue: string = ''
@@ -44,7 +43,7 @@ export class TodoComponent {
 
 
 
-  doToggleStatusTodo(status: number) {
-    this.status.emit(status)
+  doToggleStatusTodo(key: number) {
+    this.todoService.doChangeStatus(key)
   }
 }

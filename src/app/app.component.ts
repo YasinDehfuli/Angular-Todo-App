@@ -28,16 +28,4 @@ export class AppComponent implements OnInit {
     this.todos = this.todoService.doGetTodos()
     this.todoService.todosChanged.subscribe(todos => this.todos = todos)
   }
-
-  doChangeStatus(key: number) {
-    this.todos = this.todos.map(item => {
-      if (item.key === key) {
-        return {
-          ...item,
-          done: !item.done
-        }
-      }
-      return item;
-    })
-  }
 }
