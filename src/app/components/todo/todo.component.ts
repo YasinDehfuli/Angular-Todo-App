@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgClass, NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import {TodoService} from '../../services/todo.service';
 
 @Component({
   selector: 'app-todo',
@@ -14,11 +15,13 @@ import {FormsModule} from '@angular/forms';
 })
 export class TodoComponent {
   @Input('todoItem') todo!: { key: number; done: boolean; text: string };
-  @Output() delete = new EventEmitter<number>();
   @Output() status = new EventEmitter<number>();
 
   hasDoEditSelected: boolean = false;
   initialValue: string = ''
+
+  constructor(public todoService: TodoService) {
+  }
 
   doEditTodo() {
     this.hasDoEditSelected = true;
@@ -36,8 +39,10 @@ export class TodoComponent {
   }
 
   doDeleteTodo(key: number) {
-    this.delete.emit(key)
+    this.todoService.doRemoveTodo(key)
   }
+
+
 
   doToggleStatusTodo(status: number) {
     this.status.emit(status)

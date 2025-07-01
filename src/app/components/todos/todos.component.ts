@@ -15,7 +15,6 @@ import {NgClass, NgForOf} from '@angular/common';
 export class TodosComponent {
   doneStatus: boolean = false
   @Input() todos: Array<{ key: number; done: boolean; text: string; }> = []
-  @Output() delete = new EventEmitter<number>();
   @Output() status = new EventEmitter<number>();
 
   get filterTodos() {
@@ -30,9 +29,6 @@ export class TodosComponent {
     return this.todos.filter(item => item.done)
   }
 
-  doDeleteTodo(key: number) {
-    this.delete.emit(key)
-  }
 
   doChangeStatus(status: number) {
     this.status.emit(status)

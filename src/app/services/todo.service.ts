@@ -22,4 +22,8 @@ export class TodoService {
     doAddTodo(todo: string) {
         this.todos.push({key: Date.now(), done: false, text: todo})
     }
+
+    doRemoveTodo (key: number) {
+        this.todos.pop()
+    }
 }
