@@ -13,7 +13,7 @@ export interface Todo {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormAddTodoComponent, TodosComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
