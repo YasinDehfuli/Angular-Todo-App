@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {TodoService} from './services/todo.service';
-import {Observable} from 'rxjs';
-import {log} from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
+import {Observable, Subscription} from 'rxjs';
 
 export interface Todo {
   key: number;
@@ -17,9 +16,11 @@ export interface Todo {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'Angular Todo App';
   todos: Todo[] = [];
+
+  private subscription: Subscription = new Subscription();
 
   constructor(public todoService: TodoService) {
   }
@@ -27,6 +28,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.todos = this.todoService.doGetTodos()
     this.todoService.todosChanged.subscribe(todos => this.todos = todos)
+
 
     let observable = new Observable((subscriber) => {
       let count = 0
@@ -39,6 +41,10 @@ export class AppComponent implements OnInit {
       }, 1000)
     });
 
-    observable.subscribe(data => console.log(data))
+    this.subscription = observable.subscribe(data => console.log(data))
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
