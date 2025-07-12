@@ -36,12 +36,25 @@ export class AppComponent implements OnInit, OnDestroy {
         if (count >= 10) {
           subscriber.complete()
         }
+        if (count >= 3) {
+          subscriber.error(new Error('Custom Error Happens!'));
+        }
         count++
         subscriber.next(count)
       }, 1000)
     });
 
-    this.subscription = observable.subscribe(data => console.log(data))
+    this.subscription = observable.subscribe({
+      next(data) {
+        console.log('data =>', data);
+      },
+      error(err) {
+        console.log('error =>', err);
+      },
+      complete() {
+        console.log('done')
+      }
+    })
   }
 
   ngOnDestroy(): void {
