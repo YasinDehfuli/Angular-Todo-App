@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-import {FormAddTodoComponent} from './components/form-add-todo/form-add-todo.component';
-import {TodosComponent} from './components/todos/todos.component';
 import {TodoService} from './services/todo.service';
+import {Observable} from 'rxjs';
+import {log} from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
 
 export interface Todo {
   key: number;
@@ -27,5 +27,18 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.todos = this.todoService.doGetTodos()
     this.todoService.todosChanged.subscribe(todos => this.todos = todos)
+
+    let observable = new Observable((subscriber) => {
+      let count = 0
+      setInterval(() => {
+        if (count >= 10) {
+          subscriber.complete()
+        }
+        count++
+        subscriber.next(count)
+      }, 1000)
+    });
+
+    observable.subscribe(data => console.log(data))
   }
 }
